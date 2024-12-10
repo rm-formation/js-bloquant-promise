@@ -19,6 +19,14 @@ function calculReecrisPromise(valeurDepart) {
 }
 
 //Calcul encapsulé promise
+function calculEncapsuleePromise(valeurDepart) {
+    const promise = new Promise(function(resolve, reject) {
+        calcul(valeurDepart, function(resultat) {
+            resolve(resultat);
+        });
+    });
+    return promise;
+}
 
 //Utilisation calcul callback
 /* calcul(100, function(resultat) {
@@ -46,10 +54,10 @@ calculReecrisPromise(100).then(function(resultat1) {
     });
 }); */
 
-calculReecrisPromise(100)
-    .then(function(resultat1) {console.log("resultat1", resultat1); return calculReecrisPromise(resultat1)})
-    .then(function(resultat2) {console.log("resultat2", resultat2); return calculReecrisPromise(resultat2)})
-    .then(function(resultat3) {console.log("resultat3", resultat3); return calculReecrisPromise(resultat3)})
-    .then(function(resultat4) {console.log("resultat4", resultat4); return calculReecrisPromise(resultat4)});
+calculEncapsuleePromise(100)
+    .then(function(resultat1) {console.log("resultat1", resultat1); return calculEncapsuleePromise(resultat1)})
+    .then(function(resultat2) {console.log("resultat2", resultat2); return calculEncapsuleePromise(resultat2)})
+    .then(function(resultat3) {console.log("resultat3", resultat3); return calculEncapsuleePromise(resultat3)})
+    .then(function(resultat4) {console.log("resultat4", resultat4); return calculEncapsuleePromise(resultat4)});
 
 console.log("Après appel promise");
